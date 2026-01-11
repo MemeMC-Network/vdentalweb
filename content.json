@@ -1,0 +1,18 @@
+{
+  "title": "Velic Dental Lab",
+  "subtitle": "Precision dental restorations, crafted with care.",
+  "about": "Velic Dental is a full-service dental lab delivering high-quality crowns, bridges, and implant restorations.",
+  "contact": "Located in Anytown. Phone: (555) 555-5555",
+  "services": [
+    {"title":"Crowns & Bridges","desc":"High-strength zirconia and layered restorations."},
+    {"title":"Implant Restorations","desc":"Custom abutments and implant crowns."}
+  ],
+  "gallery": [
+    "/assets/images/IMG_3075.jpeg",
+    "/assets/images/IMG_3076.jpeg",
+    "/assets/images/IMG_3077.jpeg",
+    "/assets/images/IMG_3078.jpeg",
+    "/assets/images/IMG_3079.jpeg",
+    "/assets/images/IMG_3080.jpeg"
+  ]
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Login</title>
+  <style>body{font-family:Arial;padding:2rem}form{max-width:380px;margin:0 auto}input{display:block;width:100%;padding:.6rem;margin:.5rem 0}</style>
+</head>
+<body>
+  <h1>Admin Login</h1>
+  <form id="login">
+    <input id="user" placeholder="username" required>
+    <input id="pass" type="password" placeholder="password" required>
+    <button type="submit">Sign in</button>
+  </form>
+  <script>
+    document.getElementById('login').addEventListener('submit',async e=>{
+      e.preventDefault();
+      const user=document.getElementById('user').value, pass=document.getElementById('pass').value;
+      const res=await fetch('/api/login',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({user,pass})});
+      if(res.ok){const {token}=await res.json();localStorage.setItem('vd_token',token);location.href='/admin/editor.html'}else{alert('Login failed')}
+    });
+  </script>
+</body>
+</html>

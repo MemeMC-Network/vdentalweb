@@ -1,0 +1,16 @@
+{
+  "name": "vdentalweb",
+  "version": "1.0.0",
+  "description": "Velic Dental website with serverless API",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "keywords": ["dental", "website", "serverless"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^2.7.0"
+  }
+}
