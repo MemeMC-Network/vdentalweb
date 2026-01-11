@@ -1,0 +1,76 @@
+{
+  "siteTitle": "Velic Dental Laboratory",
+  "hero": {
+    "title": "Premium Dental Laboratory Services",
+    "subtitle": "Precision craftsmanship meets cutting-edge technology for exceptional dental prosthetics",
+    "background": "assets/images/logo.jpeg"
+  },
+  "services": [
+    {
+      "title": "Crowns & Bridges",
+      "description": "High-quality custom crowns and bridges crafted with precision for perfect fit and natural aesthetics",
+      "icon": "👑"
+    },
+    {
+      "title": "Implant Solutions",
+      "description": "Advanced implant-supported restorations using the latest CAD/CAM technology",
+      "icon": "🦷"
+    },
+    {
+      "title": "Dentures",
+      "description": "Complete and partial dentures designed for comfort, function, and beautiful smiles",
+      "icon": "😁"
+    },
+    {
+      "title": "Veneers",
+      "description": "Ultra-thin porcelain veneers for cosmetic enhancement and smile transformation",
+      "icon": "✨"
+    },
+    {
+      "title": "Orthodontics",
+      "description": "Clear aligners and orthodontic appliances for effective smile correction",
+      "icon": "🔧"
+    },
+    {
+      "title": "Digital Dentistry",
+      "description": "State-of-the-art digital workflows for faster turnaround and superior results",
+      "icon": "💻"
+    }
+  ],
+  "about": {
+    "title": "About Our Laboratory",
+    "description": "With over two decades of experience, Velic Dental Laboratory combines traditional craftsmanship with modern technology to deliver exceptional dental prosthetics. Our team of skilled technicians and cutting-edge equipment ensure every restoration meets the highest standards of quality and precision.",
+    "highlights": [
+      "20+ years of excellence",
+      "State-of-the-art technology",
+      "Certified dental technicians",
+      "Fast turnaround times",
+      "Quality guaranteed"
+    ]
+  },
+  "gallery": [
+    "assets/images/IMG_3075.jpeg",
+    "assets/images/IMG_3076.jpeg",
+    "assets/images/IMG_3077.jpeg",
+    "assets/images/IMG_3078.jpeg",
+    "assets/images/IMG_3079.jpeg",
+    "assets/images/IMG_3080.jpeg",
+    "assets/images/IMG_3081.jpeg",
+    "assets/images/IMG_3082.jpeg"
+  ],
+  "contact": {
+    "title": "Get in Touch",
+    "phone": "+1 (555) 123-4567",
+    "email": "info@velicdental.com",
+    "address": "123 Dental Lane, Suite 100, Medical District, City, State 12345",
+    "hours": "Monday - Friday: 8:00 AM - 6:00 PM"
+  },
+  "footer": {
+    "text": "© 2026 Velic Dental Laboratory. All rights reserved.",
+    "social": {
+      "facebook": "#",
+      "instagram": "#",
+      "linkedin": "#"
+    }
+  }
+}

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Editor - Velic Dental Laboratory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            background: #0066cc;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+        }
+
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: white;
+            color: #0066cc;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .editor-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .editor-section h2 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background: #0066cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #004999;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .gallery-manager {
+            margin-top: 30px;
+        }
+
+        .gallery-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item .remove-btn:hover {
+            background: red;
+        }
+
+        .upload-section {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .upload-section input[type="file"] {
+            display: none;
+        }
+
+        .upload-section label {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #0066cc;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-section label:hover {
+            background: #004999;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .gallery-list {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>Content Editor</h1>
+            <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="message" class="message"></div>
+
+        <!-- Content Editor Section -->
+        <div class="editor-section">
+            <h2>Edit Site Content</h2>
+            <p style="color: #666; margin-bottom: 20px;">
+                Edit the JSON below to update site content. Be careful with the syntax!
+            </p>
+            <div class="form-group">
+                <label for="content-editor">Content JSON</label>
+                <textarea id="content-editor" placeholder="Loading content..."></textarea>
+            </div>
+            <div class="actions">
+                <button class="btn btn-primary" onclick="loadContent()">Refresh Content</button>
+                <button class="btn btn-success" onclick="saveContent()">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Gallery Manager Section -->
+        <div class="editor-section gallery-manager">
+            <h2>Gallery Manager</h2>
+            <p style="color: #666; margin-bottom: 20px;">
+                Current gallery images. Click remove (×) to delete an image from the gallery list.
+            </p>
+            <div id="gallery-list" class="gallery-list">
+                <!-- Gallery items will be loaded here -->
+            </div>
+            
+            <div class="upload-section">
+                <h3>Upload New Image</h3>
+                <p style="color: #666; margin: 15px 0;">
+                    Upload a new image to add to the gallery
+                </p>
+                <input type="file" id="image-upload" accept="image/*">
+                <label for="image-upload">Choose Image</label>
+                <p id="upload-status" style="margin-top: 15px; color: #666;"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentContent = null;
+        const token = localStorage.getItem('vdental_token');
+
+        // Check authentication
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Load content on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadContent();
+            setupImageUpload();
+        });
+
+        // Load content from API
+        async function loadContent() {
+            try {
+                const response = await fetch('/api/content');
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load content');
+                }
+
+                currentContent = await response.json();
+                document.getElementById('content-editor').value = JSON.stringify(currentContent, null, 2);
+                renderGallery();
+                showMessage('Content loaded successfully', 'success');
+            } catch (error) {
+                console.error('Load error:', error);
+                showMessage('Failed to load content: ' + error.message, 'error');
+            }
+        }
+
+        // Save content to API
+        async function saveContent() {
+            try {
+                // Parse and validate JSON
+                const editorValue = document.getElementById('content-editor').value;
+                const updatedContent = JSON.parse(editorValue);
+
+                // Send to API
+                const response = await fetch('/api/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(updatedContent)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to save content');
+                }
+
+                const result = await response.json();
+                currentContent = updatedContent;
+                renderGallery();
+                showMessage('Content saved successfully!', 'success');
+            } catch (error) {
+                console.error('Save error:', error);
+                if (error instanceof SyntaxError) {
+                    showMessage('Invalid JSON syntax. Please check your content.', 'error');
+                } else {
+                    showMessage('Failed to save: ' + error.message, 'error');
+                }
+            }
+        }
+
+        // Render gallery items
+        function renderGallery() {
+            const galleryList = document.getElementById('gallery-list');
+            galleryList.innerHTML = '';
+
+            if (!currentContent || !currentContent.gallery) {
+                galleryList.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No gallery images</p>';
+                return;
+            }
+
+            currentContent.gallery.forEach((imagePath, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `
+                    <img src="${imagePath}" alt="Gallery ${index + 1}">
+                    <button class="remove-btn" onclick="removeGalleryImage(${index})" title="Remove">×</button>
+                `;
+                galleryList.appendChild(item);
+            });
+        }
+
+        // Remove gallery image
+        function removeGalleryImage(index) {
+            if (!confirm('Remove this image from the gallery?')) return;
+
+            if (currentContent && currentContent.gallery) {
+                currentContent.gallery.splice(index, 1);
+                document.getElementById('content-editor').value = JSON.stringify(currentContent, null, 2);
+                renderGallery();
+                showMessage('Image removed from gallery list. Click "Save Changes" to persist.', 'success');
+            }
+        }
+
+        // Setup image upload
+        function setupImageUpload() {
+            const fileInput = document.getElementById('image-upload');
+            
+            fileInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const uploadStatus = document.getElementById('upload-status');
+                uploadStatus.textContent = 'Uploading...';
+                uploadStatus.style.color = '#0066cc';
+
+                try {
+                    const formData = new FormData();
+                    formData.append('image', file);
+
+                    const response = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Upload failed');
+                    }
+
+                    const result = await response.json();
+                    
+                    // Add to gallery in current content
+                    if (!currentContent.gallery) {
+                        currentContent.gallery = [];
+                    }
+                    currentContent.gallery.push(result.path);
+                    
+                    // Update editor and render
+                    document.getElementById('content-editor').value = JSON.stringify(currentContent, null, 2);
+                    renderGallery();
+                    
+                    uploadStatus.textContent = 'Image uploaded! Click "Save Changes" to persist.';
+                    uploadStatus.style.color = '#28a745';
+                    
+                    // Clear file input
+                    fileInput.value = '';
+                    
+                    showMessage('Image uploaded successfully!', 'success');
+                } catch (error) {
+                    console.error('Upload error:', error);
+                    uploadStatus.textContent = 'Upload failed: ' + error.message;
+                    uploadStatus.style.color = '#dc3545';
+                    showMessage('Upload failed: ' + error.message, 'error');
+                }
+            });
+        }
+
+        // Show message
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message ${type} show`;
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 5000);
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('vdental_token');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

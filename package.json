@@ -1,0 +1,15 @@
+{
+  "name": "vdentalweb",
+  "version": "1.0.0",
+  "description": "Velic Dental Laboratory Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "keywords": ["dental", "laboratory", "website"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  }
+}
