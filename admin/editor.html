@@ -383,7 +383,7 @@
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
                 item.innerHTML = `
-                    <img src="/${imagePath}" alt="Gallery ${index + 1}">
+                    <img src="${imagePath}" alt="Gallery ${index + 1}">
                     <button class="remove-btn" onclick="removeGalleryImage(${index})" title="Remove">×</button>
                 `;
                 galleryList.appendChild(item);

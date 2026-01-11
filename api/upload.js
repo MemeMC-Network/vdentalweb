@@ -23,6 +23,8 @@ function verifyToken(req) {
 }
 
 // Parse multipart form data (simple implementation for single file)
+// NOTE: For production with large files, consider using 'busboy' or 'formidable' library
+// This implementation may be vulnerable to memory exhaustion with very large files
 async function parseMultipart(req) {
     return new Promise((resolve, reject) => {
         const chunks = [];
@@ -148,6 +150,7 @@ module.exports = async (req, res) => {
         const { filename, buffer } = await parseMultipart(req);
 
         // Validate file type (basic check)
+        // NOTE: For production, validate actual file content/magic bytes, not just extension
         const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
         const ext = filename.substring(filename.lastIndexOf('.')).toLowerCase();
         

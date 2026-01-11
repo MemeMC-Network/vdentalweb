@@ -51,8 +51,8 @@ vdentalweb/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/MemeMC-Network/vdentalweb.git
-   cd vdentalweb
+   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   cd YOUR_REPO_NAME
    ```
 
 2. **Install dependencies:**
@@ -360,7 +360,9 @@ If you need to change the repository name or owner:
 - All API endpoints use CORS headers for cross-origin requests
 - Admin endpoints require JWT authentication
 - JWT tokens expire after 1 hour
-- Passwords are compared in plain text (consider bcrypt for production)
+- **Note**: Passwords are compared in plain text in this implementation. For production, use bcrypt or similar hashing
+- **Note**: File type validation is basic (extension only). For production, validate actual file content/magic bytes
+- **Note**: Multipart parser is simple and may not handle very large files well. Consider using 'busboy' or 'formidable' for production
 - GitHub token has repository scope only
 - Never expose environment variables in client-side code
 - Use HTTPS in production (automatic with Vercel)

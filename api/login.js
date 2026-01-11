@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
         }
 
         // Simple credential check
+        // NOTE: For production, use bcrypt for password hashing
         if (username !== adminUser || password !== adminPassword) {
             return res.status(401).json({ error: 'Invalid credentials' });
         }

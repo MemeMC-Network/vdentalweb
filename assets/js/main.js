@@ -37,7 +37,8 @@ async function initSite() {
 // Fetch content from content.json
 async function fetchContent() {
     try {
-        const response = await fetch('/content.json');
+        // Try API endpoint first, fallback to direct file
+        let response = await fetch('/api/content').catch(() => fetch('/content.json'));
         if (!response.ok) {
             throw new Error('Failed to fetch content');
         }
