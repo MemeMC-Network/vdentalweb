@@ -135,6 +135,12 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-2px);
 }
 
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
 .nav-brand h1 {
     font-size: 1.5rem;
     color: var(--primary-color);
@@ -143,6 +149,32 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.founder-subtitle {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    letter-spacing: 0.5px;
+}
+
+.navbar.scrolled .founder-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navbar.scrolled .nav-brand h1 {
+    font-size: 1.3rem;
+}
+
+.navbar.scrolled .nav-brand .logo {
+    height: 45px;
 }
 
 .nav-menu {
@@ -1813,11 +1845,23 @@ img {
 
 @media (max-width: 768px) {
     .nav-brand h1 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+    
+    .founder-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .navbar.scrolled .nav-brand h1 {
+        font-size: 1rem;
     }
     
     .nav-brand .logo {
         height: 40px;
+    }
+    
+    .navbar.scrolled .nav-brand .logo {
+        height: 38px;
     }
     
     .nav-menu {
@@ -1831,22 +1875,44 @@ img {
         box-shadow: var(--shadow-lg);
         transition: left 0.3s ease;
         gap: 20px;
+        z-index: 999;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
     }
     
     .nav-menu.active {
         left: 0;
     }
     
+    .nav-link {
+        padding: 15px 20px;
+        font-size: 1rem;
+        text-align: center;
+        border-radius: 12px;
+    }
+    
     .mobile-menu-toggle {
         display: flex;
+        z-index: 1001;
+    }
+    
+    .hero {
+        min-height: 600px;
+        padding: 150px 0 80px;
     }
     
     .hero-title {
         font-size: 2.5rem;
+        margin-bottom: 20px;
     }
     
     .hero-subtitle {
         font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+    
+    .page-header {
+        padding: 140px 0 80px;
     }
     
     .page-header h1 {
@@ -1854,7 +1920,7 @@ img {
     }
     
     .section-header h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
     
     .services-grid,
@@ -1862,8 +1928,13 @@ img {
     .reasons-grid,
     .credentials-grid,
     .faq-grid,
-    .gallery-grid {
+    .gallery-grid,
+    .why-choose-grid,
+    .testimonials-grid,
+    .technology-grid,
+    .materials-grid {
         grid-template-columns: 1fr;
+        gap: 25px;
     }
     
     .showcase-grid {
@@ -1877,32 +1948,179 @@ img {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
     }
     
     .hero-buttons .btn {
         width: 100%;
         max-width: 300px;
     }
+    
+    .founder-preview-content {
+        flex-direction: column;
+    }
+    
+    .service-card,
+    .highlight-card,
+    .reason-item,
+    .credential-card,
+    .tech-card,
+    .material-item {
+        padding: 30px 25px;
+    }
+    
+    .getting-started-section {
+        padding: 40px 25px;
+    }
+    
+    .steps-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .map-container iframe {
+        min-height: 350px;
+    }
+    
+    .location-info {
+        padding: 25px 20px;
+    }
+    
+    .location-info p {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
     .nav-brand h1 {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.1;
+    }
+    
+    .founder-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .navbar.scrolled .nav-brand h1 {
+        font-size: 0.85rem;
     }
     
     .nav-brand .logo {
         height: 35px;
     }
     
+    .navbar.scrolled .nav-brand .logo {
+        height: 33px;
+    }
+    
+    .brand-text {
+        gap: 1px;
+    }
+    
     .hero {
         min-height: 500px;
         background-attachment: scroll;
+        padding: 130px 0 60px;
     }
     
     .page-header {
         background-attachment: scroll;
+        padding: 120px 0 60px;
     }
     
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .founder-bio h2,
+    .founder-preview-text h3 {
+        font-size: 1.8rem;
+    }
+    
+    .btn {
+        padding: 12px 30px;
+        font-size: 0.95rem;
+    }
+    
+    .founder-quote-large p {
+        font-size: 1.3rem;
+    }
+    
+    .service-card,
+    .highlight-card,
+    .reason-item,
+    .credential-card,
+    .tech-card,
+    .material-item,
+    .testimonial-card {
+        padding: 25px 20px;
+    }
+    
+    .getting-started-section h2 {
+        font-size: 2rem;
+    }
+    
+    .getting-started-section > p {
+        font-size: 1rem;
+    }
+    
+    .getting-started-section {
+        padding: 35px 20px;
+    }
+    
+    .step-box {
+        padding: 30px 20px;
+    }
+    
+    .map-container iframe {
+        min-height: 300px;
+    }
+    
+    .location-info p {
+        font-size: 0.95rem;
+        margin: 12px 0;
+    }
+    
+    .navbar .container {
+        padding: 12px 15px;
+    }
+    
+    /* Better touch targets for mobile */
+    .nav-link {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Hide scroll indicator on mobile */
+    .scroll-indicator {
+        display: none;
+    }
+}
     .hero-title {
         font-size: 2rem;
     }
@@ -2091,6 +2309,47 @@ img {
 }
 
 /* ===================================
+   Location Map Section
+   =================================== */
+.location-section {
+    padding: 100px 0;
+    background: white;
+}
+
+.map-container {
+    margin: 60px 0 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 3px solid rgba(196, 155, 99, 0.2);
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    min-height: 450px;
+}
+
+.location-info {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border-radius: 16px;
+    margin-top: 30px;
+}
+
+.location-info p {
+    font-size: 1.1rem;
+    margin: 15px 0;
+    color: var(--text-dark);
+}
+
+.location-info strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ===================================
    Technology Section
    =================================== */
 .technology-section {
@@ -2242,5 +2501,94 @@ img {
     font-size: 1rem;
     opacity: 0.9;
 }
+
+/* ===================================
+   Form Message Animations
+   =================================== */
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.form-message {
+    animation: slideInDown 0.4s ease;
+}
+
+/* ===================================
+   Additional Mobile Optimizations
+   =================================== */
+@media (hover: none) and (pointer: coarse) {
+    /* Touch device optimizations */
+    .nav-link,
+    .btn,
+    .mobile-menu-toggle,
+    .service-card,
+    .highlight-card {
+        -webkit-tap-highlight-color: rgba(26, 84, 144, 0.1);
+    }
+    
+    /* Remove hover effects on touch devices */
+    .nav-link:hover,
+    .btn:hover,
+    .service-card:hover,
+    .highlight-card:hover {
+        transform: none;
+    }
+    
+    /* Active states for touch */
+    .nav-link:active {
+        background: linear-gradient(135deg, rgba(26, 84, 144, 0.15), rgba(196, 155, 99, 0.15));
+        transform: scale(0.98);
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Improved accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .navbar {
+        border-bottom: 2px solid var(--primary-color);
+    }
+    
+    .btn {
+        border: 2px solid currentColor;
+    }
+    
+    .nav-link:focus,
+    .btn:focus {
+        outline: 3px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}
+
 
 

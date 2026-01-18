@@ -91,22 +91,73 @@ document.addEventListener('DOMContentLoaded', () => {
 // Form submission handler
 const contactForm = document.querySelector('#contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
         
         // Get form data
         const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
         
-        // In a real application, you would send this data to a server
-        console.log('Form submitted:', data);
-        
-        // Show success message
-        alert('Thank you for your message! We will contact you shortly.');
-        
-        // Reset form
-        contactForm.reset();
+        try {
+            // If using Formspree, the form action will handle this automatically
+            // For demonstration, we'll show a manual fetch
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Show success message
+                showFormMessage('success', 'Thank you for your message! We will contact you within 24 hours.');
+                contactForm.reset();
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            // Show error message
+            showFormMessage('error', 'Sorry, there was an error sending your message. Please try calling us directly or email us at info@velicdentalarts.com');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
     });
+}
+
+// Form message display function
+function showFormMessage(type, message) {
+    const existingMessage = document.querySelector('.form-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `form-message form-message-${type}`;
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        font-weight: 500;
+        animation: slideInDown 0.4s ease;
+        ${type === 'success' 
+            ? 'background: #d4edda; color: #155724; border: 1px solid #c3e6cb;' 
+            : 'background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'}
+    `;
+    
+    contactForm.insertAdjacentElement('afterend', messageDiv);
+    
+    // Auto remove after 8 seconds
+    setTimeout(() => {
+        messageDiv.style.animation = 'fadeOut 0.4s ease';
+        setTimeout(() => messageDiv.remove(), 400);
+    }, 8000);
 }
 
 // Add loading animation
