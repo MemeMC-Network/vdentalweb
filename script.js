@@ -86,21 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         headerObserver.observe(header);
     });
-
-    // Add parallax effect to hero and page headers
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        const pageHeader = document.querySelector('.page-header');
-        
-        if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-        
-        if (pageHeader && scrolled < pageHeader.offsetHeight) {
-            pageHeader.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
-    });
 });
 
 // Form submission handler
