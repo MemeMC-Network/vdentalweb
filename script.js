@@ -57,7 +57,7 @@ window.addEventListener('scroll', () => {
     
     // Show founder sticky text on scroll (only on founder page)
     if (founderStickyText) {
-        if (currentScroll > 0) {
+        if (currentScroll > -1) {
             founderStickyText.classList.add('visible');
         } else {
             founderStickyText.classList.remove('visible');
