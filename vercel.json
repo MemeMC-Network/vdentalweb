@@ -2,7 +2,8 @@
   "rewrites": [
     { "source": "/founder", "destination": "/founder.html" },
     { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/about", "destination": "/about.html" }
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/services", "destination": "/services.html" }
   ],
   "redirects": [
     { "source": "/status", "destination": "https://status.mememc.club", "permanent": true }
