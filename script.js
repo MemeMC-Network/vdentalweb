@@ -54,18 +54,6 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('scrolled');
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
     }
-    
-    // Show founder sticky text on scroll (only on founder page)
-    if (founderStickyText) {
-        if (currentScroll > -1) {
-            founderStickyText.classList.add('visible');
-        } else {
-            founderStickyText.classList.remove('visible');
-        }
-    }
-    
-    lastScroll = currentScroll;
-});
 
 // Intersection Observer for fade-in animations with stagger
 const observerOptions = {
