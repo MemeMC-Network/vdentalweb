@@ -2089,3 +2089,158 @@ img {
     font-weight: 600;
     color: var(--accent-color);
 }
+
+/* ===================================
+   Technology Section
+   =================================== */
+.technology-section {
+    padding: 100px 0;
+    background: white;
+}
+
+.technology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.tech-card {
+    padding: 35px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 16px;
+    border: 2px solid rgba(196, 155, 99, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 35px rgba(26, 84, 144, 0.12);
+}
+
+.tech-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.tech-card p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* ===================================
+   Materials Section
+   =================================== */
+.materials-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.material-item {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    border-left: 4px solid var(--accent-color);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.material-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 30px rgba(26, 84, 144, 0.12);
+    border-left-width: 6px;
+}
+
+.material-item h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.material-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ===================================
+   Getting Started Section
+   =================================== */
+.getting-started-section {
+    margin-top: 80px;
+    padding: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 24px;
+    color: white;
+    text-align: center;
+}
+
+.getting-started-section h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.getting-started-section > p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    opacity: 0.95;
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.step-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 35px 25px;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+}
+
+.step-box:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+}
+
+.step-num {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+.step-box h4 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: white;
+}
+
+.step-box p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+
