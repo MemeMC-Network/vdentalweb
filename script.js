@@ -8,11 +8,13 @@ if (mobileMenuToggle) {
         const isActive = navMenu.classList.toggle('active');
         mobileMenuToggle.classList.toggle('active');
         
-        // Prevent body scroll when menu is open
+        // Prevent body scroll when menu is open and add backdrop
         if (isActive) {
             body.style.overflow = 'hidden';
+            body.classList.add('menu-open');
         } else {
             body.style.overflow = '';
+            body.classList.remove('menu-open');
         }
     });
 }
@@ -24,6 +26,7 @@ navLinks.forEach(link => {
         navMenu.classList.remove('active');
         mobileMenuToggle.classList.remove('active');
         body.style.overflow = '';
+        body.classList.remove('menu-open');
     });
 });
 
@@ -33,6 +36,7 @@ document.addEventListener('click', (e) => {
         if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
             navMenu.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
+            body.classList.remove('menu-open');
             body.style.overflow = '';
         }
     }
