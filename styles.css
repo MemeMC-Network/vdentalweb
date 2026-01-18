@@ -86,18 +86,20 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 2px 30px rgba(26, 84, 144, 0.12);
     z-index: 1000;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(196, 155, 99, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(196, 155, 99, 0.2);
 }
 
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 40px rgba(26, 84, 144, 0.18);
     padding: 0;
+    border-bottom: 1px solid rgba(196, 155, 99, 0.3);
 }
 
 .navbar .container {
@@ -152,18 +154,21 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link {
     text-decoration: none;
     color: var(--text-dark);
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    letter-spacing: 0.3px;
 }
 
 .nav-link:hover,
 .nav-link.active {
     color: var(--primary-color);
-    background: rgba(26, 84, 144, 0.05);
+    background: linear-gradient(135deg, rgba(26, 84, 144, 0.12), rgba(196, 155, 99, 0.12));
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 15px rgba(26, 84, 144, 0.2);
 }
 
 .nav-link::after {
@@ -1931,4 +1936,156 @@ img {
     .founder-quote-large p {
         font-size: 1.3rem;
     }
+}
+
+/* ===================================
+   Why Choose Section
+   =================================== */
+.why-choose-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.why-choose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.reason-item {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(196, 155, 99, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.reason-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.reason-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(26, 84, 144, 0.15);
+}
+
+.reason-item:hover::before {
+    transform: scaleX(1);
+}
+
+.reason-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    animation: bounceIn 0.6s ease;
+}
+
+.reason-item:hover .reason-icon {
+    animation: bounce 0.6s ease;
+}
+
+.reason-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.reason-item p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* ===================================
+   Testimonials Section
+   =================================== */
+.testimonials-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-section::before,
+.testimonials-section::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    animation: float 20s infinite ease-in-out;
+}
+
+.testimonials-section::before {
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    right: -100px;
+}
+
+.testimonials-section::after {
+    width: 300px;
+    height: 300px;
+    bottom: -150px;
+    left: -50px;
+    animation-delay: -10s;
+}
+
+.testimonials-section .section-header h2,
+.testimonials-section .section-subtitle {
+    color: white;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+}
+
+.testimonial-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-stars {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: var(--accent-color);
 }
