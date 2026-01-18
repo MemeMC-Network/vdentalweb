@@ -25,11 +25,13 @@ let lastScroll = 0;
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
-    // Add shadow on scroll
+    // Add scrolled class and shadow on scroll
     if (currentScroll > 50) {
-        navbar.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15)';
+        navbar.classList.add('scrolled');
+        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
     } else {
-        navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+        navbar.classList.remove('scrolled');
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
     }
     
     lastScroll = currentScroll;
