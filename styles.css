@@ -139,6 +139,13 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+
+/* Center the brand text vertically when subtitle is hidden */
+.navbar:not(.scrolled) .brand-text {
+    justify-content: center;
 }
 
 .nav-brand h1 {
@@ -151,6 +158,7 @@ h1, h2, h3, h4, h5, h6 {
     background-clip: text;
     margin: 0;
     line-height: 1.2;
+    transition: all 0.4s ease;
 }
 
 .founder-subtitle {
@@ -164,7 +172,26 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.5px;
 }
 
+/* Special subtitle for founder page */
+.page-title-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 500;
+    font-family: var(--font-primary);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    letter-spacing: 0.3px;
+    font-style: italic;
+}
+
 .navbar.scrolled .founder-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Show page title subtitle on founder page when scrolled */
+.navbar.scrolled .page-title-subtitle {
     opacity: 1;
     transform: translateY(0);
 }
@@ -224,17 +251,40 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+    position: relative;
 }
 
 .mobile-menu-toggle span {
-    width: 25px;
+    width: 28px;
     height: 3px;
     background: var(--primary-color);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 3px;
+    transform-origin: center;
+}
+
+.mobile-menu-toggle:hover span {
+    background: var(--accent-color);
+}
+
+/* Animated hamburger to X */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
 }
 
 /* ===================================
@@ -869,6 +919,38 @@ h1, h2, h3, h4, h5, h6 {
 .founder-image {
     position: sticky;
     top: 120px;
+}
+
+.founder-sticky-text {
+    margin-top: 20px;
+    padding: 25px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    border-left: 4px solid var(--accent-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.founder-sticky-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.founder-sticky-text h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 0 0 8px 0;
+    font-family: var(--font-heading);
+}
+
+.founder-sticky-text p {
+    font-size: 1rem;
+    color: var(--accent-color);
+    margin: 0;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .image-placeholder {
@@ -1848,8 +1930,9 @@ img {
         font-size: 1.1rem;
     }
     
-    .founder-subtitle {
-        font-size: 0.75rem;
+    .founder-subtitle,
+    .page-title-subtitle {
+        font-size: 0.7rem;
     }
     
     .navbar.scrolled .nav-brand h1 {
@@ -1864,20 +1947,49 @@ img {
         height: 38px;
     }
     
+    .navbar .container {
+        padding: 12px 20px;
+    }
+    
+    /* Mobile menu backdrop */
+    .nav-menu::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    .nav-menu.active::before {
+        opacity: 1;
+        visibility: visible;
+    }
+    
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: 70px;
         left: -100%;
         flex-direction: column;
-        background: white;
-        width: 100%;
-        padding: 30px;
-        box-shadow: var(--shadow-lg);
-        transition: left 0.3s ease;
-        gap: 20px;
+        background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+        width: 85%;
+        max-width: 400px;
+        padding: 30px 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 5px;
         z-index: 999;
-        max-height: calc(100vh - 80px);
+        max-height: calc(100vh - 70px);
         overflow-y: auto;
+        border-top: 2px solid var(--accent-color);
+        border-right: 2px solid var(--accent-color);
+        border-bottom-right-radius: 20px;
     }
     
     .nav-menu.active {
@@ -1885,15 +1997,22 @@ img {
     }
     
     .nav-link {
-        padding: 15px 20px;
-        font-size: 1rem;
+        padding: 16px 20px;
+        font-size: 1.05rem;
         text-align: center;
         border-radius: 12px;
+        width: 100%;
+        display: block;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        transform: scale(1.02);
+        box-shadow: 0 4px 20px rgba(26, 84, 144, 0.15);
     }
     
     .mobile-menu-toggle {
         display: flex;
-        z-index: 1001;
     }
     
     .hero {
@@ -1960,6 +2079,10 @@ img {
         flex-direction: column;
     }
     
+    .founder-sticky-text {
+        display: none;
+    }
+    
     .service-card,
     .highlight-card,
     .reason-item,
@@ -1992,28 +2115,44 @@ img {
 
 @media (max-width: 480px) {
     .nav-brand h1 {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         line-height: 1.1;
     }
     
-    .founder-subtitle {
-        font-size: 0.7rem;
+    .founder-subtitle,
+    .page-title-subtitle {
+        font-size: 0.65rem;
     }
     
     .navbar.scrolled .nav-brand h1 {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
     
     .nav-brand .logo {
-        height: 35px;
+        height: 38px;
     }
     
     .navbar.scrolled .nav-brand .logo {
-        height: 33px;
+        height: 36px;
     }
     
     .brand-text {
         gap: 1px;
+    }
+    
+    .navbar .container {
+        padding: 10px 15px;
+    }
+    
+    .nav-menu {
+        top: 60px;
+        padding: 25px 15px;
+        max-height: calc(100vh - 60px);
+    }
+    
+    .nav-link {
+        padding: 14px 18px;
+        font-size: 1rem;
     }
     
     .hero {

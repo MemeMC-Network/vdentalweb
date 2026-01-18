@@ -1,11 +1,19 @@
 // Mobile Menu Toggle
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
+const body = document.body;
 
 if (mobileMenuToggle) {
     mobileMenuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+        const isActive = navMenu.classList.toggle('active');
         mobileMenuToggle.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (isActive) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
+        }
     });
 }
 
@@ -15,11 +23,24 @@ navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         mobileMenuToggle.classList.remove('active');
+        body.style.overflow = '';
     });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (navMenu && navMenu.classList.contains('active')) {
+        if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            body.style.overflow = '';
+        }
+    }
 });
 
 // Navbar scroll effect
 const navbar = document.querySelector('.navbar');
+const founderStickyText = document.querySelector('.founder-sticky-text');
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
@@ -32,6 +53,15 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('scrolled');
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+    }
+    
+    // Show founder sticky text on scroll (only on founder page)
+    if (founderStickyText) {
+        if (currentScroll > 300) {
+            founderStickyText.classList.add('visible');
+        } else {
+            founderStickyText.classList.remove('visible');
+        }
     }
     
     lastScroll = currentScroll;
