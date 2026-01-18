@@ -37,30 +37,69 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Intersection Observer for fade-in animations
+// Intersection Observer for fade-in animations with stagger
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
 };
 
 const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            // Add a slight delay for stagger effect
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 100);
+            fadeInObserver.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
 // Add fade-in animation to cards and sections
 document.addEventListener('DOMContentLoaded', () => {
-    const fadeElements = document.querySelectorAll('.service-card, .highlight-card, .reason-item, .info-card, .credential-card, .faq-item');
+    const fadeElements = document.querySelectorAll('.service-card, .highlight-card, .reason-item, .info-card, .credential-card, .faq-item, .gallery-item');
     
     fadeElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transition = 'opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         fadeInObserver.observe(el);
+    });
+
+    // Animate section headers
+    const sectionHeaders = document.querySelectorAll('.section-header');
+    sectionHeaders.forEach(header => {
+        header.style.opacity = '0';
+        header.style.transform = 'translateY(20px)';
+        header.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    headerObserver.unobserve(entry.target);
+                }
+            });
+        });
+        
+        headerObserver.observe(header);
+    });
+
+    // Add parallax effect to hero and page headers
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        const pageHeader = document.querySelector('.page-header');
+        
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+        
+        if (pageHeader && scrolled < pageHeader.offsetHeight) {
+            pageHeader.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
     });
 });
 
