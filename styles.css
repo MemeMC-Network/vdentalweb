@@ -2074,10 +2074,6 @@ img {
         flex-direction: column;
     }
     
-    .founder-sticky-text {
-        display: none;
-    }
-    
     .service-card,
     .highlight-card,
     .reason-item,
