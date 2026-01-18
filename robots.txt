@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://velicdentalarts.com/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 10

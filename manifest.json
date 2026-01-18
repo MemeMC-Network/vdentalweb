@@ -1,0 +1,27 @@
+{
+  "name": "Velic Dental Arts Studio",
+  "short_name": "Velic Dental",
+  "description": "Premier dental laboratory in Wethersfield, CT specializing in crowns, bridges, veneers, and implants",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a5490",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/images/logo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "business", "medical"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
