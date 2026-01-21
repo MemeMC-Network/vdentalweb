@@ -59,6 +59,16 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
     }
     
+    // Update scroll progress bar
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    if (navbar) {
+        navbar.style.setProperty('--scroll-progress', scrolled + '%');
+        const pseudoElement = window.getComputedStyle(navbar, '::after');
+        navbar.setAttribute('style', navbar.getAttribute('style') + '; --scroll-width: ' + scrolled + '%');
+    }
+    
     lastScroll = currentScroll;
 });
 
@@ -192,6 +202,16 @@ window.addEventListener('load', () => {
         document.body.style.transition = 'opacity 0.5s ease';
         document.body.style.opacity = '1';
     }, 100);
+    
+    // Parallax effect for hero section
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxSpeed = 0.5;
+            hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+        });
+    }
 });
 
 // Lazy loading for images (when you add actual images)
@@ -214,24 +234,61 @@ if ('IntersectionObserver' in window) {
     });
 }
 
-// Add CSS class for active mobile menu toggle
-if (mobileMenuToggle) {
-    const style = document.createElement('style');
-    style.textContent = `
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-    `;
-    document.head.appendChild(style);
-}
+// Scroll to Top Button
+const scrollToTopBtn = document.createElement('button');
+scrollToTopBtn.innerHTML = '↑';
+scrollToTopBtn.className = 'scroll-to-top';
+scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
+scrollToTopBtn.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(196, 155, 99, 0.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 
-// Set active nav link based on current page
+document.body.appendChild(scrollToTopBtn);
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 400) {
+        scrollToTopBtn.style.opacity = '1';
+        scrollToTopBtn.style.visibility = 'visible';
+    } else {
+        scrollToTopBtn.style.opacity = '0';
+        scrollToTopBtn.style.visibility = 'hidden';
+    }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+scrollToTopBtn.addEventListener('mouseenter', () => {
+    scrollToTopBtn.style.transform = 'translateY(-5px) scale(1.1)';
+    scrollToTopBtn.style.boxShadow = '0 8px 30px rgba(196, 155, 99, 0.5)';
+});
+
+scrollToTopBtn.addEventListener('mouseleave', () => {
+    scrollToTopBtn.style.transform = 'translateY(0) scale(1)';
+    scrollToTopBtn.style.boxShadow = '0 4px 20px rgba(196, 155, 99, 0.4)';
+});
 document.addEventListener('DOMContentLoaded', () => {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     navLinks.forEach(link => {

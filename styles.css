@@ -12,12 +12,15 @@
     --primary-color: #1a5490;
     --secondary-color: #2980b9;
     --accent-color: #c49b63;
+    --accent-light: #d4a574;
     --dark-blue: #0a2540;
     --text-dark: #2c3e50;
     --text-light: #7f8c8d;
     --bg-light: #f8f9fa;
     --bg-white: #ffffff;
     --border-color: #e1e8ed;
+    --success-color: #28a745;
+    --hover-overlay: rgba(26, 84, 144, 0.05);
     
     /* Typography */
     --font-primary: 'Montserrat', sans-serif;
@@ -26,11 +29,18 @@
     /* Spacing */
     --section-padding: 80px 0;
     --container-padding: 0 20px;
+    --card-padding: 35px;
     
-    /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    /* Shadows - Enhanced */
+    --shadow-sm: 0 2px 8px rgba(26, 84, 144, 0.08);
+    --shadow-md: 0 4px 16px rgba(26, 84, 144, 0.12);
+    --shadow-lg: 0 8px 32px rgba(26, 84, 144, 0.16);
+    --shadow-xl: 0 12px 48px rgba(26, 84, 144, 0.2);
+    --shadow-hover: 0 12px 40px rgba(26, 84, 144, 0.18);
+    
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 html {
@@ -44,6 +54,28 @@ body {
     font-size: 16px;
     overflow-x: hidden;
     animation: fadeIn 0.5s ease;
+}
+
+/* Selection Styling */
+::selection {
+    background: var(--accent-color);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Smooth Focus Outlines */
+*:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+    transition: outline-offset 0.2s ease;
+}
+
+*:focus:not(:focus-visible) {
+    outline: none;
 }
 
 /* Page load transition */
@@ -93,6 +125,19 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-bottom: 1px solid rgba(196, 155, 99, 0.2);
+}
+
+/* Scroll Progress Bar */
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+    width: 0%;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px var(--accent-color);
 }
 
 .navbar.scrolled {
@@ -448,11 +493,13 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: var(--transition-bounce);
     cursor: pointer;
     border: 2px solid transparent;
     position: relative;
     overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .btn::before {
@@ -463,14 +510,18 @@ h1, h2, h3, h4, h5, h6 {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.4);
     transform: translate(-50%, -50%);
     transition: width 0.6s ease, height 0.6s ease;
 }
 
 .btn:hover::before {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
+}
+
+.btn:active {
+    transform: scale(0.95);
 }
 
 .btn-primary {
