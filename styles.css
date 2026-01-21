@@ -450,6 +450,7 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(135deg, rgba(26, 84, 144, 0.95) 0%, rgba(41, 128, 185, 0.95) 100%), 
                 url('assets/images/IMG_3081.jpeg') center/cover no-repeat;
     background-attachment: fixed;
+    color: white;
     text-align: center;
     position: relative;
 }
@@ -473,6 +474,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 3rem;
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: white;
 }
 
 .page-header p {
