@@ -45,6 +45,8 @@
 
 html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -54,6 +56,8 @@ body {
     font-size: 16px;
     overflow-x: hidden;
     animation: fadeIn 0.5s ease;
+    margin: 0;
+    padding: 0;
 }
 
 /* Selection Styling */
@@ -125,6 +129,8 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-bottom: 1px solid rgba(196, 155, 99, 0.2);
+    margin: 0;
+    padding: 0;
 }
 
 /* Scroll Progress Bar */
