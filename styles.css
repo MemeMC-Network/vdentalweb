@@ -193,7 +193,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     text-align: center;
     transition: all 0.4s ease;
-    transform: translateY(-5px);
+    transform: translateY(5px);
 }
 
 /* Center the brand text vertically when subtitle is hidden */
@@ -2789,6 +2789,7 @@ img {
         outline-offset: 2px;
     }
 }
+
 
 
 
