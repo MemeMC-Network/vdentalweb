@@ -191,6 +191,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     gap: 2px;
     justify-content: center;
+    text-align: center;
     transition: all 0.4s ease;
 }
 
@@ -234,6 +235,14 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.4s ease;
     letter-spacing: 0.3px;
     font-style: italic;
+}
+
+.navbar.scrolled .brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    transition: all 0.4s ease;
 }
 
 .navbar.scrolled .founder-subtitle {
@@ -2779,6 +2788,7 @@ img {
         outline-offset: 2px;
     }
 }
+
 
 
 
