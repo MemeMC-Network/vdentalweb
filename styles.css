@@ -187,7 +187,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-text {
-    display: flex;
+    display: grid;
     flex-direction: column;
     gap: 2px;
     justify-content: center;
@@ -2788,6 +2788,7 @@ img {
         outline-offset: 2px;
     }
 }
+
 
 
 
